@@ -2,9 +2,12 @@ package com.example.springsecurity.test.librarymanagementsystembackend.Controlle
 
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.AuthorDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.AuthorSaveDTO;
+import com.example.springsecurity.test.librarymanagementsystembackend.dto.AuthorUpdateDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.entity.Author;
 import com.example.springsecurity.test.librarymanagementsystembackend.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,5 +32,16 @@ public class AuthorController {
         return allAuthors;
     }
 
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<AuthorDTO> getAuthorById(@PathVariable("id") int id) {
+        AuthorDTO author = authorService.getAuthorById(id);
+        return new ResponseEntity<>(author, HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/update")
+    public String updateAuthor(@RequestBody AuthorUpdateDTO authorUpdateDTO) {
+        String authorname = authorService.updateAuthor(authorUpdateDTO);
+        return "Updated Successfully";
+    }
 
 }
