@@ -2,6 +2,7 @@ package com.example.springsecurity.test.librarymanagementsystembackend.Controlle
 
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.AuthorDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.AuthorSaveDTO;
+import com.example.springsecurity.test.librarymanagementsystembackend.entity.Author;
 import com.example.springsecurity.test.librarymanagementsystembackend.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,4 +28,6 @@ public class AuthorController {
         List<AuthorDTO> allAuthors = authorService.getAllAuthor();
         return allAuthors;
     }
+
+
 }
