@@ -44,4 +44,11 @@ public class AuthorController {
         return "Updated Successfully";
     }
 
+    @DeleteMapping (path = "/delete/{id}")
+    public String deleteAuthor(@PathVariable (value = "id") int id) {
+        String authorname = authorService.deleteAuthor(id);
+        return "Deleted Successfully";
+    }
+
+
 }
