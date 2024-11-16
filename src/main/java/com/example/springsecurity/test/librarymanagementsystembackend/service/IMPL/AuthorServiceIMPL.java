@@ -1,11 +1,15 @@
 package com.example.springsecurity.test.librarymanagementsystembackend.service.IMPL;
 
+import com.example.springsecurity.test.librarymanagementsystembackend.dto.AuthorDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.AuthorSaveDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.entity.Author;
 import com.example.springsecurity.test.librarymanagementsystembackend.repo.AuthorRepo;
 import com.example.springsecurity.test.librarymanagementsystembackend.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AuthorServiceIMPL implements AuthorService {
@@ -20,5 +24,19 @@ public class AuthorServiceIMPL implements AuthorService {
         );
         authorRepo.save(author);
         return author.getAuthorname();
+    }
+
+    @Override
+    public List<AuthorDTO> getAllAuthor() {
+        List<Author> getauthors = authorRepo.findAll();
+        List<AuthorDTO> authorDTOList = new ArrayList<>();
+        for (Author author : getauthors) {
+            AuthorDTO authorDTO = new AuthorDTO(
+                    author.getAuthorid(),
+                    author.getAuthorname()
+            );
+            authorDTOList.add(authorDTO);
+        }
+        return authorDTOList;
     }
 }
