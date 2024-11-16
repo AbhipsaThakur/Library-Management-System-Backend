@@ -19,9 +19,7 @@ public class AuthorServiceIMPL implements AuthorService {
 
     @Override
     public String addAuthor(AuthorSaveDTO authorSaveDTO) {
-        Author author = new Author(
-                authorSaveDTO.getAuthorname()
-        );
+        Author author = new Author(authorSaveDTO.getAuthorname());
         authorRepo.save(author);
         return author.getAuthorname();
     }
@@ -37,6 +35,7 @@ public class AuthorServiceIMPL implements AuthorService {
             );
             authorDTOList.add(authorDTO);
         }
+        System.out.println("Authors retrieved: " + authorDTOList.size());  
         return authorDTOList;
     }
 }
