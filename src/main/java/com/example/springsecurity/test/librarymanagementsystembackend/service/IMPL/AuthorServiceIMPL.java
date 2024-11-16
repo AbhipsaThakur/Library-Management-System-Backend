@@ -60,5 +60,16 @@ public class AuthorServiceIMPL implements AuthorService {
         return null;
     }
 
+    @Override
+    public String deleteAuthor(int id) {
+        if (authorRepo.existsById(id)) {
+            authorRepo.deleteById(id);
+        }
+        else{
+            System.out.println("Author id not found!!");
+        }
+        return "";
+    }
+
 
 }
