@@ -35,7 +35,8 @@ public class AuthorServiceIMPL implements AuthorService {
             );
             authorDTOList.add(authorDTO);
         }
-        System.out.println("Authors retrieved: " + authorDTOList.size());
         return authorDTOList;
     }
+
+
 }
