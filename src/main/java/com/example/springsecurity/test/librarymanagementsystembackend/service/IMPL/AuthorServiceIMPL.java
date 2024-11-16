@@ -2,6 +2,7 @@ package com.example.springsecurity.test.librarymanagementsystembackend.service.I
 
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.AuthorDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.AuthorSaveDTO;
+import com.example.springsecurity.test.librarymanagementsystembackend.dto.AuthorUpdateDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.entity.Author;
 import com.example.springsecurity.test.librarymanagementsystembackend.repo.AuthorRepo;
 import com.example.springsecurity.test.librarymanagementsystembackend.service.AuthorService;
@@ -36,6 +37,27 @@ public class AuthorServiceIMPL implements AuthorService {
             authorDTOList.add(authorDTO);
         }
         return authorDTOList;
+    }
+
+    @Override
+    public AuthorDTO getAuthorById(int id) {
+        Author author = authorRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Author not found with ID: " + id));
+        return new AuthorDTO(author.getAuthorid(), author.getAuthorname());
+    }
+
+    @Override
+    public String updateAuthor(AuthorUpdateDTO authorUpdateDTO) {
+        if (authorRepo.existsById(authorUpdateDTO.getAuthorid())) {
+            Author author = authorRepo.getById(authorUpdateDTO.getAuthorid());
+            author.setAuthorname(authorUpdateDTO.getAuthorname());
+            authorRepo.save(author);
+            return author.getAuthorname();
+        }
+        else {
+            System.out.println("Author id not found!!");
+        }
+        return null;
     }
 
 
