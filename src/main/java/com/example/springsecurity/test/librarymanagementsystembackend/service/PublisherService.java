@@ -10,4 +10,6 @@ public interface PublisherService {
     String addPublisher(PublisherSaveDTO publisherSaveDTO);
 
     List<PublisherDTO> getAllPublisher();
+
+    PublisherDTO getPublisherById(int id);
 }
