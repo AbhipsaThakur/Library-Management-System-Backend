@@ -3,6 +3,7 @@ package com.example.springsecurity.test.librarymanagementsystembackend.service.I
 import com.example.springsecurity.test.librarymanagementsystembackend.ResourceNotFountException;
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.PublisherDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.PublisherSaveDTO;
+import com.example.springsecurity.test.librarymanagementsystembackend.dto.PublisherUpdateDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.entity.Publisher;
 import com.example.springsecurity.test.librarymanagementsystembackend.repo.PublisherRepo;
 import com.example.springsecurity.test.librarymanagementsystembackend.service.PublisherService;
@@ -34,7 +35,6 @@ public class PublisherServiceIMPL implements PublisherService {
                     publisher.getPublisherId(),
                     publisher.getPublisherName()
             );
-            // Add each PublisherDTO to the list
             publisherDTOList.add(publisherDTO);
         }
         return publisherDTOList;
@@ -45,5 +45,18 @@ public class PublisherServiceIMPL implements PublisherService {
         Publisher publisher = publisherRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFountException("Publisher", "id", id));
         return new PublisherDTO(publisher.getPublisherId(), publisher.getPublisherName());
+    }
+
+    @Override
+    public String updatePublisher(PublisherUpdateDTO publisherUpdateDTO) {
+        if (publisherRepo.existsById(publisherUpdateDTO.getPublisherId())) {
+            Publisher publisher = publisherRepo.findById(publisherUpdateDTO.getPublisherId())
+                    .orElseThrow(() -> new ResourceNotFountException("Publisher", "id", publisherUpdateDTO.getPublisherId()));
+            publisher.setPublisherName(publisherUpdateDTO.getPublisherName());
+            publisherRepo.save(publisher);
+            return publisher.getPublisherName();
+        } else {
+            throw new ResourceNotFountException("Publisher", "id", publisherUpdateDTO.getPublisherId());
+        }
     }
 }
