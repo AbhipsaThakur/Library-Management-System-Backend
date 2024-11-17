@@ -59,4 +59,14 @@ public class PublisherServiceIMPL implements PublisherService {
             throw new ResourceNotFountException("Publisher", "id", publisherUpdateDTO.getPublisherId());
         }
     }
+
+    @Override
+    public String deletePublisher(int id) {
+        if (publisherRepo.existsById(id)) {
+            publisherRepo.deleteById(id);
+        }else{
+            System.out.println("Publisher ID not found");
+        }
+        return "Publisher deleted";
+    }
 }
