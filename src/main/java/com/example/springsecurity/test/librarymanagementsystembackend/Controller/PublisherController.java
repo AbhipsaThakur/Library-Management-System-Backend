@@ -2,6 +2,7 @@ package com.example.springsecurity.test.librarymanagementsystembackend.Controlle
 
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.PublisherDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.PublisherSaveDTO;
+import com.example.springsecurity.test.librarymanagementsystembackend.dto.PublisherUpdateDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,12 @@ public class PublisherController {
     public ResponseEntity<PublisherDTO> getPublisherById(@PathVariable("id") int id) {
         PublisherDTO publisher = publisherService.getPublisherById(id);
         return new ResponseEntity<>(publisher, HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/update")
+    public String updatePublisher(@RequestBody PublisherUpdateDTO publisherUpdateDTO) {
+        String publishername = publisherService.updatePublisher(publisherUpdateDTO);
+        return "Updated Successfully";
     }
 
 }
