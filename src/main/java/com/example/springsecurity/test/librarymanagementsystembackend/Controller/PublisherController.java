@@ -4,6 +4,8 @@ import com.example.springsecurity.test.librarymanagementsystembackend.dto.Publis
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.PublisherSaveDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,4 +27,10 @@ public class PublisherController {
         List<PublisherDTO> allPublishers = publisherService.getAllPublisher();
         return allPublishers;
     }
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<PublisherDTO> getPublisherById(@PathVariable("id") int id) {
+        PublisherDTO publisher = publisherService.getPublisherById(id);
+        return new ResponseEntity<>(publisher, HttpStatus.OK);
+    }
+
 }
