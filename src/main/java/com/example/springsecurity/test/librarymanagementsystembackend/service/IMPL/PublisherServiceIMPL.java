@@ -1,5 +1,6 @@
 package com.example.springsecurity.test.librarymanagementsystembackend.service.IMPL;
 
+import com.example.springsecurity.test.librarymanagementsystembackend.ResourceNotFountException;
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.PublisherDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.PublisherSaveDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.entity.Publisher;
@@ -37,5 +38,12 @@ public class PublisherServiceIMPL implements PublisherService {
             publisherDTOList.add(publisherDTO);
         }
         return publisherDTOList;
+    }
+
+    @Override
+    public PublisherDTO getPublisherById(int id) {
+        Publisher publisher = publisherRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFountException("Publisher", "id", id));
+        return new PublisherDTO(publisher.getPublisherId(), publisher.getPublisherName());
     }
 }
