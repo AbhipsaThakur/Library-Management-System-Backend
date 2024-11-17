@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PublisherServiceIMPL implements  PublisherService {
+public class PublisherServiceIMPL implements PublisherService {
 
     @Autowired
     private PublisherRepo publisherRepo;
@@ -25,7 +25,7 @@ public class PublisherServiceIMPL implements  PublisherService {
     }
 
     @Override
-    public List<PublisherDTO> getAllPublisher(){
+    public List<PublisherDTO> getAllPublisher() {
         List<Publisher> getpublishers = publisherRepo.findAll();
         List<PublisherDTO> publisherDTOList = new ArrayList<>();
         for (Publisher publisher : getpublishers) {
@@ -33,6 +33,8 @@ public class PublisherServiceIMPL implements  PublisherService {
                     publisher.getPublisherId(),
                     publisher.getPublisherName()
             );
+            // Add each PublisherDTO to the list
+            publisherDTOList.add(publisherDTO);
         }
         return publisherDTOList;
     }
