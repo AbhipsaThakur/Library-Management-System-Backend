@@ -21,6 +21,14 @@ public class Book {
     @JoinColumn(name = "publisherid")
     private Publisher publisher;
 
+    // Constructor matching the parameters in BookServiceIMPL
+    public Book(String booktitle, Author author, Publisher publisher) {
+        this.booktitle = booktitle;
+        this.author = author;
+        this.publisher = publisher;
+    }
+
+    // Existing constructors
     public Book(int bookid, String booktitle) {
         this.bookid = bookid;
         this.booktitle = booktitle;
@@ -30,10 +38,10 @@ public class Book {
         this.booktitle = booktitle;
     }
 
-    public Book(){
-
+    public Book() {
     }
 
+    // Getters and setters
     public int getBookid() {
         return bookid;
     }
@@ -50,11 +58,29 @@ public class Book {
         this.booktitle = booktitle;
     }
 
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
                 "bookid=" + bookid +
                 ", booktitle='" + booktitle + '\'' +
+                ", author=" + author +
+                ", publisher=" + publisher +
                 '}';
     }
 }
