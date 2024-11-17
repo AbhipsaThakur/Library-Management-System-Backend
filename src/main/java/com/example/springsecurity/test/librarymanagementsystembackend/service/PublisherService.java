@@ -15,4 +15,6 @@ public interface PublisherService {
     PublisherDTO getPublisherById(int id);
 
     String updatePublisher(PublisherUpdateDTO publisherUpdateDTO);
+
+    String deletePublisher(int id);
 }
