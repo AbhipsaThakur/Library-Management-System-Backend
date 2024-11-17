@@ -1,5 +1,6 @@
 package com.example.springsecurity.test.librarymanagementsystembackend.service.IMPL;
 
+import com.example.springsecurity.test.librarymanagementsystembackend.dto.BookDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.BookSaveDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.entity.Book;
 import com.example.springsecurity.test.librarymanagementsystembackend.repo.AuthorRepo;
@@ -8,6 +9,9 @@ import com.example.springsecurity.test.librarymanagementsystembackend.repo.Publi
 import com.example.springsecurity.test.librarymanagementsystembackend.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class BookServiceIMPL implements BookService {
@@ -24,10 +28,11 @@ public class BookServiceIMPL implements BookService {
     public String addBook(BookSaveDTO bookSaveDTO) {
         Book book = new Book(
                 bookSaveDTO.getBooktitle(),
-                authorRepo.getById(bookSaveDTO.getAuthorid()),
-                publisherRepo.getById(bookSaveDTO.getPublisherId())
+                authorRepo.findById(bookSaveDTO.getAuthorid()).orElse(null),
+                publisherRepo.findById(bookSaveDTO.getPublisherId()).orElse(null)
         );
         bookRepo.save(book);
         return bookSaveDTO.getBooktitle();
     }
+
 }
