@@ -1,9 +1,12 @@
 package com.example.springsecurity.test.librarymanagementsystembackend.Controller;
 
+import com.example.springsecurity.test.librarymanagementsystembackend.dto.PublisherDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.dto.PublisherSaveDTO;
 import com.example.springsecurity.test.librarymanagementsystembackend.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -16,5 +19,10 @@ public class PublisherController {
     public String savePublisher(@RequestBody PublisherSaveDTO publisherSaveDTO) {
         String publishername = publisherService.addPublisher(publisherSaveDTO);
         return publishername;
+    }
+    @GetMapping(path = "/getAllPublisher")
+    public List<PublisherDTO > getAllPublisher(){
+        List<PublisherDTO> allPublishers = publisherService.getAllPublisher();
+        return allPublishers;
     }
 }
