@@ -21,7 +21,6 @@ public class Publisher {
     public Publisher(String publisherName) {
         this.publisherName = publisherName;
     }
-
     public Publisher() {
 
     }
@@ -49,5 +48,7 @@ public class Publisher {
                 ", publisherName='" + publisherName + '\'' +
                 '}';
     }
+
+
 }
 
