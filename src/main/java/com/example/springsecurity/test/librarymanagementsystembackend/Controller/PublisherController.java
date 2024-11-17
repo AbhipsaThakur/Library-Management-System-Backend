@@ -40,4 +40,9 @@ public class PublisherController {
         return "Updated Successfully";
     }
 
+    @DeleteMapping(path = "/delete/{id}")
+    public String deletePublisher(@PathVariable (value = "id") int id) {
+        String publishername = publisherService.deletePublisher(id);
+        return "Deleted Successfully";
+    }
 }
