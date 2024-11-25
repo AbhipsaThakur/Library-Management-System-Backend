@@ -11,5 +11,5 @@ public class BookUpdateDTO {
     private int bookid;
     private String booktitle;
     private int authorid;
-    private int publisherId;
+    private int publisherid;
 }

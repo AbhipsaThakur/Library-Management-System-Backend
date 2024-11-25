@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class BookSaveDTO {
     private String booktitle;
     private int authorid;
-    private int publisherId;
+    private int publisherid;
 }
