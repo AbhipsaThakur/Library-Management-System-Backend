@@ -1,54 +1,64 @@
 package com.example.springsecurity.test.librarymanagementsystembackend.entity;
 
 import jakarta.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "publisher")
 public class Publisher {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "publisherid", length = 11)
-    private int publisherId;
+    private int publisherid;
 
     @Column(name = "publishername", length = 45)
-    private String publisherName;
+    private String publishername;
 
-    public Publisher(int publisherId, String publisherName) {
-        this.publisherId = publisherId;
-        this.publisherName = publisherName;
+    @OneToMany(mappedBy = "publisher")
+    private Set<Book> books;
+
+    public Publisher(int publisherid, String publishername) {
+        this.publisherid = publisherid;
+        this.publishername = publishername;
     }
 
-    public Publisher(String publisherName) {
-        this.publisherName = publisherName;
+    public Publisher(String publishername) {
+        this.publishername = publishername;
     }
+
     public Publisher() {
-
     }
 
-    public int getPublisherId() {
-        return publisherId;
+    public int getPublisherid() {
+        return publisherid;
     }
 
-    public void setPublisherId(int publisherId) {
-        this.publisherId = publisherId;
+    public void setPublisherid(int publisherid) {
+        this.publisherid = publisherid;
     }
 
-    public String getPublisherName() {
-        return publisherName;
+    public String getPublishername() {
+        return publishername;
     }
 
-    public void setPublisherName(String publisherName) {
-        this.publisherName = publisherName;
+    public void setPublishername(String publishername) {
+        this.publishername = publishername;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 
     @Override
     public String toString() {
         return "Publisher{" +
-                "publisherId=" + publisherId +
-                ", publisherName='" + publisherName + '\'' +
+                "publisherid=" + publisherid +
+                ", publishername='" + publishername + '\'' +
                 '}';
     }
-
-
 }
-
