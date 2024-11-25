@@ -1,6 +1,7 @@
 package com.example.springsecurity.test.librarymanagementsystembackend.entity;
 
 import jakarta.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "author")
@@ -12,6 +13,10 @@ public class Author {
 
     @Column(name = "authorname", length = 45)
     private String authorname;
+
+    // Reference the custom Book entity
+    @OneToMany(mappedBy = "author")
+    private Set<Book> books;
 
     public Author(int authorid, String authorname) {
         this.authorid = authorid;
@@ -40,6 +45,14 @@ public class Author {
 
     public void setAuthorname(String authorname) {
         this.authorname = authorname;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 
     @Override
