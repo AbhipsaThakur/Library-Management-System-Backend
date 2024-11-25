@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class PublisherUpdateDTO {
-    private int publisherId;
-    private String publisherName;
+    private int publisherid;
+    private String publishername;
+
 }

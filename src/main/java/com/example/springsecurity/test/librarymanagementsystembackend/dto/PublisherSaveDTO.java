@@ -8,5 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class PublisherSaveDTO {
-    private String publisherName;
+    private String publishername;
 }
+
+
