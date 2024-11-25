@@ -2,6 +2,8 @@ package com.example.springsecurity.test.librarymanagementsystembackend.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "book")
 public class Book {
@@ -20,6 +22,10 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "publisherid")
     private Publisher publisher;
+
+    @OneToMany(mappedBy = "book")
+    private Set<Borrow> borrows;
+
 
     // Constructor matching the parameters in BookServiceIMPL
     public Book(String booktitle, Author author, Publisher publisher) {
@@ -43,6 +49,7 @@ public class Book {
 
     // Getters and setters
     public int getBookid() {
+
         return bookid;
     }
 
