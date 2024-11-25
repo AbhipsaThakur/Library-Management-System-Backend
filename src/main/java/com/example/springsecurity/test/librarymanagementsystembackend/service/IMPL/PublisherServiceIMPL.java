@@ -21,9 +21,9 @@ public class PublisherServiceIMPL implements PublisherService {
 
     @Override
     public String addPublisher(PublisherSaveDTO publisherSaveDTO) {
-        Publisher publisher = new Publisher(publisherSaveDTO.getPublisherName());
+        Publisher publisher = new Publisher(publisherSaveDTO.getPublishername());
         publisherRepo.save(publisher);
-        return publisher.getPublisherName();
+        return publisher.getPublishername();
     }
 
     @Override
@@ -32,8 +32,8 @@ public class PublisherServiceIMPL implements PublisherService {
         List<PublisherDTO> publisherDTOList = new ArrayList<>();
         for (Publisher publisher : getpublishers) {
             PublisherDTO publisherDTO = new PublisherDTO(
-                    publisher.getPublisherId(),
-                    publisher.getPublisherName()
+                    publisher.getPublisherid(),
+                    publisher.getPublishername()
             );
             publisherDTOList.add(publisherDTO);
         }
@@ -44,19 +44,19 @@ public class PublisherServiceIMPL implements PublisherService {
     public PublisherDTO getPublisherById(int id) {
         Publisher publisher = publisherRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFountException("Publisher", "id", id));
-        return new PublisherDTO(publisher.getPublisherId(), publisher.getPublisherName());
+        return new PublisherDTO(publisher.getPublisherid(), publisher.getPublishername());
     }
 
     @Override
     public String updatePublisher(PublisherUpdateDTO publisherUpdateDTO) {
-        if (publisherRepo.existsById(publisherUpdateDTO.getPublisherId())) {
-            Publisher publisher = publisherRepo.findById(publisherUpdateDTO.getPublisherId())
-                    .orElseThrow(() -> new ResourceNotFountException("Publisher", "id", publisherUpdateDTO.getPublisherId()));
-            publisher.setPublisherName(publisherUpdateDTO.getPublisherName());
+        if (publisherRepo.existsById(publisherUpdateDTO.getPublisherid())) {
+            Publisher publisher = publisherRepo.findById(publisherUpdateDTO.getPublisherid())
+                    .orElseThrow(() -> new ResourceNotFountException("Publisher", "id", publisherUpdateDTO.getPublisherid()));
+            publisher.setPublishername(publisherUpdateDTO.getPublishername());
             publisherRepo.save(publisher);
-            return publisher.getPublisherName();
+            return publisher.getPublishername();
         } else {
-            throw new ResourceNotFountException("Publisher", "id", publisherUpdateDTO.getPublisherId());
+            throw new ResourceNotFountException("Publisher", "id", publisherUpdateDTO.getPublisherid());
         }
     }
 
