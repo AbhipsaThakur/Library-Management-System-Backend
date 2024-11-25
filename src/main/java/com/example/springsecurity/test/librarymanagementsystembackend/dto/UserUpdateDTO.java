@@ -1,0 +1,14 @@
+package com.example.springsecurity.test.librarymanagementsystembackend.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class UserUpdateDTO {
+    private int userid;
+    private String username;
+    private String useremail;
+}
